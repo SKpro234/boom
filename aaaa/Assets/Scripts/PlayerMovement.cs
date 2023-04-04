@@ -14,13 +14,14 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     public bool isFacingRight = true;
 
-    
     private bool isJumping;
+    [SerializeField] private int extraJumps;
+    private int jumpsLeft;
 
-    [SerializeField] private float coyoteTime = 0.2f;
+    [SerializeField] private float coyoteTime;
     private float coyoteTimeCounter;
 
-    [SerializeField] private float jumpBufferTime = 0.2f;
+    [SerializeField] private float jumpBufferTime;
     private float jumpBufferCounter;
 
     private void Awake()
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             coyoteTimeCounter = coyoteTime;
+            jumpsLeft = extraJumps;
         }
         else
         {
@@ -61,9 +63,10 @@ public class PlayerMovement : MonoBehaviour
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundMask);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && (isGrounded || jumpsLeft > 0))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            jumpsLeft--;
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
@@ -74,9 +77,8 @@ public class PlayerMovement : MonoBehaviour
         if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f && !isJumping)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-
             jumpBufferCounter = 0f;
-
+            jumpsLeft--;
             StartCoroutine(JumpCooldown());
         }
     }
