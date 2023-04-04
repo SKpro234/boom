@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool isGrounded;
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
 
     private void Awake()
     {
