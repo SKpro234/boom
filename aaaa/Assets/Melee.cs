@@ -45,5 +45,11 @@ public class Melee : MonoBehaviour
 
          }
     }
+    
+    void OnDrawGizmosSelected(){
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(new Vector2(transform.position.x + 1  ,transform.position.y),attackRange);
+        Gizmos.DrawWireSphere(new Vector2(transform.position.x - 1  ,transform.position.y),attackRange);
+    }
 
 }

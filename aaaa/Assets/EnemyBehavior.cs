@@ -6,7 +6,6 @@ public class EnemyBehavior : MonoBehaviour
 {
     public float HP;
     public float MaxHP = 3;
-    public float invulnTime = 0.2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +15,7 @@ public class EnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void TakeDamage(float damage){
@@ -24,14 +23,7 @@ public class EnemyBehavior : MonoBehaviour
         Debug.Log("boom");
         if(HP <= 0){
             Destroy(gameObject);
-        }  
-        else
-        {
-        invulnWait();
-        }
+        } 
 
-    }
-    private IEnumerator invulnWait(){
-        yield return new WaitForSeconds(invulnTime);
     }
 }
