@@ -12,7 +12,16 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool isGrounded;
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
+
+    
+    private bool isJumping;
+
+    [SerializeField] private float coyoteTime = 0.2f;
+    private float coyoteTimeCounter;
+
+    [SerializeField] private float jumpBufferTime = 0.2f;
+    private float jumpBufferCounter;
 
     private void Awake()
     {
@@ -32,6 +41,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundMask);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -43,6 +70,15 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
+
+        if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f && !isJumping)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+
+            jumpBufferCounter = 0f;
+
+            StartCoroutine(JumpCooldown());
+        }
     }
 
     private void Flip()
@@ -52,5 +88,11 @@ public class PlayerMovement : MonoBehaviour
         scale.x *= -1f;
         transform.localScale = scale;
     }
-}
 
+    private IEnumerator JumpCooldown()
+    {
+        isJumping = true;
+        yield return new WaitForSeconds(0.4f);
+        isJumping = false;
+    }
+}
