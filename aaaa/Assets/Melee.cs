@@ -11,7 +11,7 @@ public class Melee : MonoBehaviour
     public PlayerMovement rightFacing;
     public LayerMask Enemies;
     public float attackRange;
-    public Collider2D[] enemiesToDamage;
+    private Collider2D[] enemiesToDamage;
     void Start()
     {
         
