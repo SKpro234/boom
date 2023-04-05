@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 893417659}
   - component: {fileID: 893417660}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,7 +388,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1297451934}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Ground Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -758,7 +758,7 @@ GameObject:
   - component: {fileID: 1956132123}
   - component: {fileID: 1956132124}
   - component: {fileID: 1956132122}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1029,4 +1029,4 @@ MonoBehaviour:
   Enemies:
     serializedVersion: 2
     m_Bits: 128
-  attackRange: 1
+  attackRange: {x: 1, y: 1}
