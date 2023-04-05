@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    public float HP;
-    public float MaxHP = 3;
+    public int HP;
+    public int MaxHP = 3;
+    public int collisionDamage = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,7 @@ public class EnemyBehavior : MonoBehaviour
 
     }
 
-    public void TakeDamage(float damage){
+    public void TakeDamage(int damage){
         HP -= damage;
         Debug.Log("boom");
         if(HP <= 0){

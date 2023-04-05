@@ -17,15 +17,6 @@ public class Melee : MonoBehaviour
         
     }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        var enemy = collision.collider.GetComponent<EnemyBehavior>();
-       if(enemy){
-        enemy.TakeDamage(damage);
-       }
-    }
-
     // Update is called once per frame
     void Update()
     {
