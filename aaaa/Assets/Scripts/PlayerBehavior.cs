@@ -19,7 +19,7 @@ public class PlayerBehavior : MonoBehaviour
     void Update()
     {
         invulnTime -= Time.deltaTime;
-            enemyCollide = Physics2D.OverlapBox(transform.position, transform.position, 0, Enemies);
+            enemyCollide = Physics2D.OverlapBox(transform.position, new Vector2(1,1), 0, Enemies); //vector2(1,1) is player hitbox
             if(invulnTime <= 0 && enemyCollide){
                 TakeDamage(enemyCollide.GetComponent<EnemyBehavior>().collisionDamage);
                 invulnTime = invulnTimeSet;
@@ -35,4 +35,6 @@ public class PlayerBehavior : MonoBehaviour
         } 
 
     }
+
+    
 }
