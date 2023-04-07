@@ -9,7 +9,8 @@ public class PlayerBehavior : MonoBehaviour
     public float invulnTimeSet = 1;
     public float invulnTime;
     public LayerMask Enemies;
-    private Collider2D enemyCollide;
+    private Collider2D Collide;
+    public Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,15 +20,15 @@ public class PlayerBehavior : MonoBehaviour
     void Update()
     {
         invulnTime -= Time.deltaTime;
-            enemyCollide = Physics2D.OverlapBox(transform.position, new Vector2(1,1), 0, Enemies); //vector2(1,1) is player hitbox
-            if(invulnTime <= 0 && enemyCollide){
-                TakeDamage(enemyCollide.GetComponent<EnemyBehavior>().collisionDamage);
+            Collide = Physics2D.OverlapBox(transform.position, new Vector2(1,1), 0, Enemies); //vector2(1,1) is player hitbox
+            if(invulnTime <= 0 && Collide){
+                TakeDamage(Collide.GetComponent<EnemyBehavior>().collisionDamage);
                 invulnTime = invulnTimeSet;
                 Debug.Log("owie");
+                
             }
     }
-    
-    
+ 
     public void TakeDamage(int damage){
         HP -= damage;
         if(HP <= 0){
