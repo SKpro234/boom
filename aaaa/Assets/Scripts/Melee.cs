@@ -8,7 +8,7 @@ public class Melee : MonoBehaviour
 {
     public int damage = 1;
 
-    public PlayerMovement rightFacing;
+    public PlayerMovement Player;
     public LayerMask Enemies;
     public Vector2 attackRange;
     private Collider2D[] enemiesToDamage;
@@ -20,8 +20,13 @@ public class Melee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
          if (Input.GetButtonDown("Fire1")){
-            if(rightFacing.GetComponent<PlayerMovement>().isFacingRight){
+            if(Input.GetButton("Vertical") && !(Player.GetComponent<PlayerMovement>().isGrounded)){
+            enemiesToDamage = Physics2D.OverlapBoxAll(new Vector2(transform.position.x,transform.position.y - 1),
+            attackRange, 0, Enemies);         
+            }
+            else if(Player.GetComponent<PlayerMovement>().isFacingRight){
             enemiesToDamage = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 1,transform.position.y),
             attackRange, 0, Enemies);
             }

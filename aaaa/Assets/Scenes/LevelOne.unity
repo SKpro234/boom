@@ -1618,6 +1618,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  isGrounded: 0
   isFacingRight: 1
   extraJumps: 1
   coyoteTime: 0.2
@@ -1743,7 +1744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  rightFacing: {fileID: 1956132122}
+  Player: {fileID: 1956132122}
   Enemies:
     serializedVersion: 2
     m_Bits: 128

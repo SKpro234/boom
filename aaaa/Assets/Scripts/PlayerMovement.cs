@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
 
     private Rigidbody2D rb;
-    private bool isGrounded;
+    public bool isGrounded;
     public bool isFacingRight = true;
 
     private bool isJumping;
